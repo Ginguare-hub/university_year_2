@@ -71,9 +71,6 @@ int readInt(const int MIN_NUMBER, const int MAX_NUMBER, std::string myString)
     return number;
 }
 
-#include <iostream>
-#include <string>
-
 double readPenalty(const double MIN_NUMBER, const double MAX_NUMBER, const std::string myString)
 {
     bool isIncorrect{false};
@@ -173,7 +170,7 @@ void writeCarSpecifications(const double cons)
             break;
     }
 
-    std::cout << "    Потребление: " << cons << "\n";
+    std::cout << "    Потребление: " << cons << " (л/100км)\n";
     std::cout << "    Тип потребления: " << type << "\n";
 }
 

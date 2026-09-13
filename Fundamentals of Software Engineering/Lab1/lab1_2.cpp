@@ -1,5 +1,4 @@
 #include <iostream>
-#include <clocale>
 
 int main()
 {
