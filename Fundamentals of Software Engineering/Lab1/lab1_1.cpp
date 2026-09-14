@@ -83,7 +83,7 @@ void readInt(const char *prompt, int &value)
 
 int main()
 {
-    setlocale(LC_ALL, "Russian");
+    setlocale(LC_ALL, "Russian.UTF-8");
 
     double liters{0.0};
     int litersInt{0};

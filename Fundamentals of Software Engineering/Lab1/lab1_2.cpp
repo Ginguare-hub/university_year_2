@@ -2,7 +2,7 @@
 
 int main()
 {
-    setlocale(LC_ALL, "Russian");
+    setlocale(LC_ALL, "Russian.UTF-8");
     const double fuelConsumption[6]{7.2, 9.8, 12.5, 6.9, 15.0, 8.3};
     const int SIZE{6};
 

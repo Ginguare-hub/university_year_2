@@ -55,9 +55,11 @@ int readInt(const int MIN_NUMBER, const int MAX_NUMBER, std::string myString)
         if (std::cin.fail() || std::cin.get() != '\n')
         {
             isIncorrect = true;
-            std::cerr<< "Ошибка: некорректный ввод\n";
+            std::cerr << "Ошибка: некорректный ввод\n";
             std::cin.clear();
-            while (std::cin.get() != '\n') {};
+            while (std::cin.get() != '\n')
+            {
+            };
         }
 
         if (!isIncorrect && ((number < MIN_NUMBER) || (number > MAX_NUMBER)))
@@ -99,7 +101,7 @@ double readPenalty(const double MIN_NUMBER, const double MAX_NUMBER, const std::
             std::cerr << "Ошибка: некорректный ввод\n";
         }
 
-        if (!isIncorrect &&  std::cin.get() != '\n')
+        if (!isIncorrect && std::cin.get() != '\n')
         {
             isIncorrect = true;
             while (std::cin.get() != '\n' && !std::cin.eof())
@@ -119,9 +121,9 @@ double readPenalty(const double MIN_NUMBER, const double MAX_NUMBER, const std::
     return number;
 }
 
-void countCarTypes(const double cars_consumption[], const int length, 
-                   int& countEco, int& countAverage, int& countInefficient)
-{  
+void countCarTypes(const double cars_consumption[], const int length,
+                   int &countEco, int &countAverage, int &countInefficient)
+{
     countEco = 0;
     countAverage = 0;
     countInefficient = 0;
@@ -133,17 +135,17 @@ void countCarTypes(const double cars_consumption[], const int length,
         car_type = getCarConsumptionType(cars_consumption[i]);
         switch (car_type)
         {
-            case eco:
-                countEco++;
-                break;
+        case eco:
+            countEco++;
+            break;
 
-            case average:
-                countAverage++;
-                break;
+        case average:
+            countAverage++;
+            break;
 
-            case inefficient:
-                countInefficient++;
-                break;
+        case inefficient:
+            countInefficient++;
+            break;
         }
     }
 }
@@ -157,17 +159,17 @@ void writeCarSpecifications(const double cons)
 
     switch (car_type)
     {
-        case eco:
-            type = "Экономичная";
-            break;
+    case eco:
+        type = "Экономичная";
+        break;
 
-        case average:
-            type = "Средняя";
-            break;
+    case average:
+        type = "Средняя";
+        break;
 
-        case inefficient:
-            type = "Прожорливая";
-            break;
+    case inefficient:
+        type = "Прожорливая";
+        break;
     }
 
     std::cout << "    Потребление: " << cons << " (л/100км)\n";
@@ -198,7 +200,7 @@ int main()
 
     writeCarTypeCount(cars_consumption, CARS_COUNT);
 
-    do 
+    do
     {
         std::cout << "\nВведите номер машины [1..6] для вывода характеристик и наложения штрафа для прожорливых машин (0 для выхода):\n";
         index = readInt(0, CARS_COUNT, "> ");
@@ -214,36 +216,35 @@ int main()
             car_type = getCarConsumptionType(cars_consumption[index]);
             switch (car_type)
             {
-                case inefficient:
+            case inefficient:
+            {
+                double new_cons{cars_consumption[index]};
+                std::cout << "Введите штраф-множитель для увеличения потребления машины (Enter для стандартного 1.2):\n";
+                double penalty{readPenalty(1.0, MAX_PENALTY, "> ")};
+
+                if (penalty == 0.0)
                 {
-                    double new_cons{cars_consumption[index]};
-                    std::cout << "Введите штраф-множитель для увеличения потребления машины (Enter для стандартного 1.2):\n";
-                    double penalty{readPenalty(1.0, MAX_PENALTY, "> ")};
-
-                    if (penalty == 0.0)
-                    {
-                        applyMaintenancePenalty(new_cons);
-                    }
-                    else
-                    {
-                        applyMaintenancePenalty(new_cons, penalty);
-                    }
-                    std::cout << "\n=== До применения штрафа ===\n";
-                    writeCarSpecifications(cars_consumption[index]);
-                    std::cout << "=== После применения штрафа ===\n";
-                    writeCarSpecifications(new_cons);
-                    break;
+                    applyMaintenancePenalty(new_cons);
                 }
+                else
+                {
+                    applyMaintenancePenalty(new_cons, penalty);
+                }
+                std::cout << "\n=== До применения штрафа ===\n";
+                writeCarSpecifications(cars_consumption[index]);
+                std::cout << "=== После применения штрафа ===\n";
+                writeCarSpecifications(new_cons);
+                break;
+            }
 
-                default:
-                    std::cout << "Характеристики машины №" << index + 1 << "\n";
-                    writeCarSpecifications(cars_consumption[index]);
-                    break;
-                
+            default:
+                std::cout << "Характеристики машины №" << index + 1 << "\n";
+                writeCarSpecifications(cars_consumption[index]);
+                break;
             }
         }
-        
+
     } while (shouldRepeat);
 
-    return 0;
+    return 2e100;
 }
