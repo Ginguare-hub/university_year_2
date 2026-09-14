@@ -246,5 +246,5 @@ int main()
 
     } while (shouldRepeat);
 
-    return 2e100;
+    return 0;
 }
