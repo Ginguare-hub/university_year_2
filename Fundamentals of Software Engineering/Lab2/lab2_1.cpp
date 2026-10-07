@@ -28,8 +28,17 @@ void writeSubststringTask()
     std::cout << "Введите подстроку: ";
     std::getline(std::cin, sub);
 
-    std::cout << "Все марки машин с подстрокой \"" << sub << "\":\n";
-    writeCarsBySubstring(sub);
+    if (std::cin.fail())
+    {
+        std::cout << "Произошла ошибка ввода или переполнение буфера!\n";
+        std::cin.clear();
+        std::cin.ignore(1000, '\n');
+    }
+    else
+    {
+        std::cout << "Все марки машин с подстрокой \"" << sub << "\":\n";
+        writeCarsBySubstring(sub);
+    }
 }
 
 void writeLexicographicallyTask()

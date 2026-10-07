@@ -23,6 +23,8 @@ bool validate(char c);
 int get_stack_priority(char c);
 int get_relative_priority(char c);
 int get_rang(char c);
+void append_to_postfix(std::string &postfix, int &rang);
+bool pop_all_to_postfix(std::string &postfix, int &rang);
 
 int main()
 {
@@ -40,14 +42,13 @@ int main()
         if (rang == 1)
         {
             std::cout << "Постфиксная запись: \n" << postfix << "\n";
-            std::cout << "Ранг: " << rang << "\n";
         }
         else
         {
             std::cout << "Некорректный ввод инфиксного изображения\n";
             //std::cout << "Постфиксная запись: \n" << postfix << "\n";
-            std::cout << "Ранг: " << rang << "\n";
         }
+        std::cout << "Ранг: " << rang << "\n";
     }
     else
     {
@@ -135,10 +136,7 @@ bool translate(std::string_view infix, std::string &postfix, int &rang)
                 {
                     return false;
                 }
-
-                pop(my_stack, temp);
-                postfix += temp;
-                rang += get_rang(temp);
+                append_to_postfix(postfix, rang);
                 top(my_stack, last);
             }
             pop(my_stack, temp);
@@ -153,9 +151,7 @@ bool translate(std::string_view infix, std::string &postfix, int &rang)
             {
                 while (get_relative_priority(c) <= get_stack_priority(last))
                 {
-                    pop(my_stack, temp);
-                    postfix += temp;
-                    rang += get_rang(temp);
+                    append_to_postfix(postfix, rang);
                     top(my_stack, last);
                 }
                 push(c, my_stack);
@@ -163,13 +159,31 @@ bool translate(std::string_view infix, std::string &postfix, int &rang)
         }
     }
 
+    return pop_all_to_postfix(postfix, rang);
+}
+
+void append_to_postfix(std::string &postfix, int &rang)
+{
+    char temp;
+    if (pop(my_stack, temp))
+    {
+        postfix += temp;
+        rang += get_rang(temp);  
+    }   
+}
+
+bool pop_all_to_postfix(std::string &postfix, int &rang)
+{
+    char op;
+
     while (!isEmpty(my_stack))
     {
-        char op;
         pop(my_stack, op);
 
         if (op == '(' || op == ')')
+        {
             return false;
+        }
 
         postfix += op;
         rang += get_rang(op);
