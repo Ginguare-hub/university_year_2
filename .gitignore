@@ -1,6 +1,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/c++,c,delphi,java,assembler,visualstudiocode,visualstudio,intellij
 # Edit at https://www.toptal.com/developers/gitignore?templates=c++,c,delphi,java,assembler,visualstudiocode,visualstudio,intellij
 
+*.exe
+
 ### Assembler ###
 *.exe
 *.o
