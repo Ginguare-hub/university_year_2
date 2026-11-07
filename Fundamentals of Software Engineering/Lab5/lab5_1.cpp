@@ -122,7 +122,7 @@ int main()
 {
     setlocale(LC_ALL, "ru.utf-8");
     std::vector<Car> cars;
-    cars.reserve(5); // место выделено заранее, чтобы вектор не копировал объекты
+    cars.reserve(5);
 
     cars.emplace_back("Toyota Camry", 60.0, 8.5);
     cars.emplace_back("Ford Focus", 55.0, 6.9);

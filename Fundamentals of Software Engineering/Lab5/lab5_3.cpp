@@ -13,7 +13,7 @@ public:
         std::cout << "создан объект (вместимость 2)\n";
     }
 
-    // 1 Деструктор.
+    // 1 деструктор
     ~ServiceHistory()
     {
         delete[] data_;
