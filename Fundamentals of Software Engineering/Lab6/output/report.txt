@@ -1,0 +1,38 @@
+ОТЧЁТ
+
+Парк:
+A001AA;CAR;Toyota Camry;4.4;45320
+C333CC;BUS;MAN Lion;80;75000
+E003EE;TRUCK;КАМАЗ;200;120000
+H888HH;TRUCK;Volvo FH;50;200500
+K004KK;BUS;ПАЗ;5;90400
+M777MM;CAR;Kia Rio;20;15000
+O999OO;BUS;ЛиАЗ;50;110000
+P444PP;TRUCK;MAN;12;150200
+T555TT;CAR;Ford Focus;40;60000
+X111XX;TRUCK;Scania;250;180000
+Y222YY;CAR;Hyundai Solaris;25;20000
+Ж123ЖЖ;TRUCK;Isuzu;180;100000
+Ч666ЧЧ;BUS;ПАЗ Vector;40;95000
+Я000ЯЯ;CAR;Renault Logan;15;40000
+
+Расход по типам:
+BUS;275.000 л
+TRUCK;1030.000 л
+CAR;130.000 л
+
+График ТО:
+
+История операций:
+WAIT TRIP К004КК
+REFUEL К004КК
+SERVICE Е003ЕЕ
+UNDO SERVICE Е003ЕЕ
+WAIT TRIP Т555ТТ
+REFUEL Т555ТТ
+SERVICE А001АА
+WAIT TRIP О999ОО
+UNDO SERVICE А001АА
+
+Суммарный расход=465364 л, стоимость=2.62465e+07 руб
+Самый загруженный месяц: 3
